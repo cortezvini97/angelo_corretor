@@ -1,0 +1,178 @@
+<body>
+    <header>
+		<img class="img-fluid cabeclho-img" src="/assets/site/img/angelo.png">
+        <div class="bottom">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <div class="text-center">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Início</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/emprendimento">Empreendimentos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/loteamento">Loteamentos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/imoveis">Imóveis</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contato">Contato</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-favorites" href="/imoveisfavorites">Favoritos {if="$count_favorites > 0"}<span class="badge badge-primary">{$count_favorites}</span>{/if}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link facebook-link" target="_blank" href="https://www.facebook.com/angelocorrreta"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link instagram-link" target="_blank" href="https://www.instagram.com/angelo_corretor/"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="banner">
+        <br><br><br><br>
+        <div class="card-search">
+            <h5>Pesquise Aqui</h5>
+            <form method="get" action="/resultadoBusca">
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                        <select required name="locacaoVendaRural" id="tipoimovel" class="form-control">
+							<option value="" disabled selected>Selecione uma opção</option>
+                            <option value="venda">Imóveis a Venda</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                        <select required name="tipoImovel" id="tipoimoveis" class="form-control">
+                            <option value="" selected disabled>Tipo Imóvel</option>
+                            {loop="$tipoimoveis"}
+                            <option value="{$value.tipo_imovel}">{$value.tipo_imovel}</option>
+                            {/loop}
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <select name="estado" id="estado" class="form-control">
+                            <option value="">Estado</option>
+							{loop="$estados"}
+								<option value="{$value.estado_uf}">{$value.estado}</option>
+							{/loop}
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <select name="cidade" id="cidadeEscolha" class="form-control">
+                            <option value="">Cidade</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <select name="bairro" id="bairrosEscolha" class="form-control">
+                            <option value="">Bairro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <input name="precomin" type="text" class="form-control" id="precomin" placeholder="Preco min">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <input name="precomax" type="text" class="form-control" id="precomax" placeholder="Preco max">
+                    </div>
+                </div>
+                <button class="btn btn-success">Buscar</button>
+            </form>
+        </div>
+    </div>
+    <div class="container-sm setcontainer">
+        <div class="text-center">
+            <h2 class="color-tema">{$count_imoveis} Empreendimentos</h2>
+        </div><br>
+        <div class="row">
+            {loop="$imoveis_emprendimentos"}
+            <div class="col-md-4">
+                <div class="card-base">
+                    <div data-url="{$value.url}" class="cards-content">
+                        {if="$value.foto_capa != 'nulo'"}
+                            <img class="imageCard img-fluid" src="{$value.foto_capa}"/><br>
+                        {/if}
+                        <div class="card-conteudo">
+                            {if="$value.valor == 0.00"}
+                                <p>Valor sob consulta</p>
+                            {else}
+                                <div class="preco text-center">
+                                    R$ {function="decimal($value.valor)"}
+                                </div>
+                            {/if}
+                            <h4>{$value.tipo_imovel} - {$value.Bairro}</h4>
+                            <p>{$value.status}</p>
+                            <div class="dados">
+                                {if="$value.dormitorios > 0"}
+                                    <div class="conteudodados">
+                                        <div class="text-center">
+                                            <i class="fas fa-bed"></i><br>
+                                        </div>
+                                        {$value.dormitorios} dorms
+                                    </div>
+                                {/if}
+                                {if="$value.banheiros > 0"}
+                                    <div class="conteudodados">
+                                        <div class="text-center">
+                                            <i class="fas fa-shower"></i><br>
+                                        </div>
+                                        {$value.banheiros} w.c
+                                    </div>
+                                {/if}
+                                {if="$value.garagens > 0"}
+                                    <div class="conteudodados">
+                                        <div class="text-center">
+                                            <i class="fas fa-car"></i><br>
+                                        </div>
+                                        {$value.garagens} vagas
+                                    </div>
+                                {/if}
+                                {if="$value.terreno > 0"}
+                                    <div class="conteudodados">
+                                        <div class="text-center">
+                                            <i class="fas fa-border-style"></i><br>
+                                        </div>
+                                        {function="decimal($value.terreno)"} m²
+                                    </div>
+                                {/if}
+                            </div><br>
+                            <div class="codigo">
+                                Código: {$value.codigo}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        {if="inFavorites($value.url) == false"}
+                            <h3 style="color: #04315D;"><div class="favorites-add-remove" data-favorites="add" data-url="{$value.url}"><i class="far fa-heart favorites"></i></div></h3>
+                        {else}
+                            <h3 style="color: #04315D;"><div  class="favorites-add-remove" data-favorites="remove" data-url="{$value.url}"><i class="fas fa-heart removefavorites"></i></div></h3>
+                        {/if}
+                    </div>
+                </div>
+            </div>
+            {/loop}
+        </div>
+    </div><br>
+    <div class="fab-container">
+        <ul class="fab-options">
+            <li id="whatsapp">
+                <span class="fab-label">Whatsapp</span>
+                <div class="fab-icon-holder">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>

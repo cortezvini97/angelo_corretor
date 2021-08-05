@@ -1,0 +1,5 @@
+# Miscellaneous
+composer.lock
+
+/vendor/*
+!/vendor/vcid/

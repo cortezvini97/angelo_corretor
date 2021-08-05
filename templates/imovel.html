@@ -1,0 +1,98 @@
+<body>
+    <header>
+		<img class="img-fluid cabeclho-img" src="/assets/site/img/angelo.png">
+        <div class="bottom">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <div class="text-center">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Início</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/empreendimento">Empreendimentos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/loteamento">Loteamentos</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/imoveis">Imóveis</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contato">Contato</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-favorites" href="/imoveisfavorites">Favoritos {if="$count_favorites > 0"}<span class="badge badge-primary">{$count_favorites}</span>{/if}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link facebook-link" target="_blank" href="https://www.facebook.com/angelocorrreta"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link instagram-link" target="_blank" href="https://www.instagram.com/angelo_corretor/"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                    <h4 class="titleimovel">{$imovel.tipo_imovel} - {$imovel.Bairro} - {$imovel.cidade}/{$imovel.estado} - Código: {$imovel.codigo}</h4>
+                    {if="$imovel.valor == 0.00"}
+                    	<p>Valor sob consulta</p>
+                    {else}
+                    	<h5>{$imovel.status} - R$ {function="decimal($imovel.valor)"}</h5><br><br>
+                    	
+                    {/if}
+                    <p class="tamanho-p">Área Total: <strong>{function="decimal($imovel.terreno)"} m²</strong></p><br><br>
+                    <p class="tamanho-p"><strong>Descrição do Imóvel</strong></p>
+                    <p>{$imovel.descricao}</p>
+            </div>
+            <div class="col-sm-6">
+                <h4 class="titleimovel">PERGUNTE SOBRE ESTE IMÓVEL</h4>
+                <a onmouseover="this.style='opacity: .5';" onmouseout="this.style='opacity: 1'" href="https://api.whatsapp.com/send?phone=5535988191124&text=Tenho%20interesse%20nesse%20im%C3%B3vel%20https://www.angelocorretor.com.br/imovel/{$imovel.url}" target="_blank">
+                    <img class="img-fluid" src="/assets/site/img/BotaoAngelo.png"/>
+                </a>
+            </div>
+        </div><br><br>
+        <div class="text-center">
+            <h3 class="titleimovel">Fotos do Imóvel</h3>
+        </div>
+        <div class="row">
+           
+            {if="$imovel.foto_capa != 'nulo'"}
+            <div class="col-sm-3">
+                <a href="{$imovel.foto_capa}"  data-lightbox="{$imovel.tipo_imovel}-{$imovel.Bairro}">
+                    <img src="{$imovel.foto_capa}" class="imggaleia img-fluid img-thumbnail"/>
+                </a>
+            </div>
+            {/if}
+            {loop="$galeria"}
+            <div class="col-sm-3">
+                <a href="{$value.foto}" data-lightbox="{$imovel.tipo_imovel}-{$imovel.Bairro}">
+                    <img src="{$value.foto}" class="imggaleia img-fluid img-thumbnail"/>
+                </a>
+            </div>
+            {/loop}
+        </div><br><br>
+        <div class="mapa">
+            {function="html($bairro.mapa)"} 
+        </div><br>
+    </div><br>
+    
+   <div class="fab-container">
+        <ul class="fab-options">
+            <li id="whatsapp">
+                <span class="fab-label">Whatsapp</span>
+                <div class="fab-icon-holder">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+            </li>
+        </ul>
+    </div>

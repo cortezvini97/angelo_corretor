@@ -1,0 +1,84 @@
+<body>
+    <header>
+		<img class="img-fluid cabeclho-img" src="/assets/site/img/angelo.png">
+        <div class="bottom">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                    <div class="text-center">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Início</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/empreendimento">Empreendimentos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/loteamento">Loteamentos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/imoveis">Imóveis</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contato">Contato</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link link-favorites" href="/imoveisfavorites">Favoritos {if="$count_favorites > 0"}<span class="badge badge-primary">{$count_favorites}</span>{/if}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link facebook-link" target="_blank" href="https://www.facebook.com/angelocorrreta"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link instagram-link" target="_blank" href="https://www.instagram.com/angelo_corretor/"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header><br>
+    <div class="container">
+        <div class="cinza">
+            <h3 class="azul">Fale Conosco</h3>
+            <form method="post" action="/contato">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="nome"><strong>Nome:</strong></label>
+                        <input required type="text" class="form-control" name="nome" id="nome" placeholder="Nome">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="email"><strong>E-mail:</strong></label>
+                        <input required type="email" class="form-control" name="email" id="email" placeholder="E-mail">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="telefone"><strong>Telefone:</strong></label>
+                        <input required type="text" class="form-control" name="telefone" id="telefone" placeholder="telefone">
+                    </div>
+                     <div class="form-group col-md-12">
+                        <label for="telefone"><strong>Assunto:</strong></label>
+                        <input required type="text" class="form-control" name="Assunto" id="telefone" placeholder="Assunto">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="msg"><strong>Mensagem:</strong></label>
+                        <textarea required id="msg" name="msg" rows="15" class="form-control" placeholder="Escreva sua Mensagem"></textarea>
+                    </div>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Enviar">
+            </form>
+        </div>
+    </div><br>
+    <div class="mapa" id="mapa">
+
+    </div><br>
+    <div class="fab-container">
+        <ul class="fab-options">
+            <li id="whatsapp">
+                <span class="fab-label">Whatsapp</span>
+                <div class="fab-icon-holder">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+            </li>
+        </ul>
+    </div>
